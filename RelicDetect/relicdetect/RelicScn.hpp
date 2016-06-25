@@ -15,6 +15,14 @@ public:
 	//************************************
 	bool RelicScn::Match_an_Obj(RelicObj obj);
 	//************************************
+	// Method:    Match_an_Obj
+	// Returns:   bool
+	// Parameter: RelicObj obj
+	// Parameter: std::vector<Point2f> & corners
+	// 说明:		  匹配的同时返回角标
+	//************************************
+	bool Match_an_Obj(RelicObj obj, std::vector<Point2f> & corners);
+	//************************************
 	// Method:    Draw_Obj
 	// Returns:   void
 	// 说明:		  绘制匹配成功的目标对象

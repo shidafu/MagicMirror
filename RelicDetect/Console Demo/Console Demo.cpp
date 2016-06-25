@@ -17,7 +17,7 @@
 #include "RelicDetect.hpp"
 #include "RelicObj.hpp"
 #include "RelicScn.hpp"
-#include "JsonCPPHeader\json.h"
+//#include "JsonCPPHeader\json.h"
 #include "RelicHelper.h"
 
 #include "opencv_serialization.hpp"
@@ -35,8 +35,8 @@ using namespace cv::xfeatures2d;
 using namespace std;
 void relic_origin()
 {
-	Mat object_color = imread("F:\\Tdevelop\\Hackathon\\MagicMirror\\images\\a.jpg");
-	Mat scene_color = imread("F:\\Tdevelop\\Hackathon\\MagicMirror\\images\\a_scene2.jpg");
+	Mat object_color = imread("F:\\Tdevelop\\Hackathon\\MagicMirror\\images\\objects\\a.jpg");
+	Mat scene_color = imread("F:\\Tdevelop\\Hackathon\\MagicMirror\\images\\a_scene1.jpg");
 	//imshow("origin", object_color);
 	//// create and open a character archive for output
 	//std::ofstream ofs("test.txt");
