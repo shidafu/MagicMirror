@@ -1,3 +1,6 @@
+
+
+#include "databasemanager.h"
 #include <websocketpp/config/asio_no_tls.hpp>
 
 #include <websocketpp/server.hpp>
@@ -9,6 +12,7 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "cv.h"
+
 
 using namespace cv;
 typedef websocketpp::server<websocketpp::config::asio> server;
@@ -60,7 +64,8 @@ void on_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg) {
 }
 
 int main() {
-    // Create a server endpoint
+	/*
+     //Create a server endpoint
     server echo_server;
 
     try {
@@ -74,6 +79,7 @@ int main() {
         // Register our message handler
         echo_server.set_message_handler(bind(&on_message,&echo_server,::_1,::_2));
 
+		//echo_server
         // Listen on port 9002
         echo_server.listen(9002);
 
@@ -87,4 +93,16 @@ int main() {
     } catch (...) {
         std::cout << "other exception" << std::endl;
     }
+	*/
+	
+	CDatabaseManager mDbm;
+	vector<pair<RelicObj, ObjInfo>> RelicObjVec;
+	mDbm.initial();
+	mDbm.ConnectDb();
+	if (mDbm.m_DbStatus== CDatabaseManager::DB_CONNECT)
+	{
+		mDbm.LoadFromDb(RelicObjVec);
+	}
+	
+	return 0;
 }
