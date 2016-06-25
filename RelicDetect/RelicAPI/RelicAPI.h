@@ -13,7 +13,7 @@ public:
 	RelicAPI();
 	~RelicAPI();
 
-    static string detect(Mat img£¬vector<pair<RelicObj, ObjInfo>>& objs);
+    static string detect(Mat img,vector<pair<RelicObj, ObjInfo>>& objs);
 	static	string Convert_info_to_Json(ObjInfo obj_info, std::vector<Point2f>corners);
 };
 

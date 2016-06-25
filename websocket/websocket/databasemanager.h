@@ -15,7 +15,6 @@ public:
 	void initial();
 	bool ConnectDb();
 	bool LoadFromDb(vector<pair<RelicObj, ObjInfo>>& RelicObjVec);
-
 	bool DisConnectDb();
 
 	enum DbStatus {

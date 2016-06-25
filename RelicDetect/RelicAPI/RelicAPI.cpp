@@ -7,7 +7,7 @@ RelicAPI::RelicAPI()
 RelicAPI::~RelicAPI()
 {
 }
-string RelicAPI::detect(Mat img£¬vector<pair<RelicObj, ObjInfo>>& objs)
+string RelicAPI::detect(Mat img,vector<pair<RelicObj, ObjInfo>>& objs)
 {
 	RelicScn scene;
 	scene.Load_Img(img);
@@ -16,6 +16,7 @@ string RelicAPI::detect(Mat img£¬vector<pair<RelicObj, ObjInfo>>& objs)
 	for (int i = 0;i < objs.size();i++)
 	{
 		std::vector<Point2f> corners;
+		scene.Calc_Keypoints_and_Descriptors();
 		bool matched = scene.Match_an_Obj(objs[i].first,corners);
 		if (matched)
 		{
