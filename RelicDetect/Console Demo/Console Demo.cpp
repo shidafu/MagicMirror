@@ -35,8 +35,8 @@ using namespace cv::xfeatures2d;
 using namespace std;
 void relic_origin()
 {
-	Mat object_color = imread("F:\\Tdevelop\\Hackathon\\MagicMirror\\images\\objects\\a.jpg");
-	Mat scene_color = imread("F:\\Tdevelop\\Hackathon\\MagicMirror\\images\\a_scene1.jpg");
+	Mat object_color = imread("F:\\Tdevelop\\Hackathon\\MagicMirror\\images\\objects\\c.jpg");
+	Mat scene_color = imread("F:\\Tdevelop\\Hackathon\\MagicMirror\\images\\c_scene1.jpg");
 	//imshow("origin", object_color);
 	//// create and open a character archive for output
 	//std::ofstream ofs("test.txt");
@@ -73,8 +73,9 @@ void relic_origin()
 	//cout << "blur lapv: " << RelicDetect::Image_Blurred_LAPV(scene.img_gray) << endl;
 	//cout << "blur teng: " << RelicDetect::Image_Blurred_TENG(scene.img_gray, 3) << endl;
 	obj.Calc_Keypoints_and_Descriptors();
+	BOOST_LOG_TRIVIAL(info) << "计算scene特征开始 ";
 	scene.Calc_Keypoints_and_Descriptors();
-
+	BOOST_LOG_TRIVIAL(info) << "计算scene特征结束 ";
 	scene.Match_an_Obj(obj);
 	scene.Draw_Obj();
 	cout << "relicDetect" << endl;
