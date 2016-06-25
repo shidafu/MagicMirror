@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Console Demo", "Console Dem
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Create_Json_Features", "Create_Json_Features\Create_Json_Features.vcxproj", "{FAE99EB7-0481-49EE-8B9F-A620FEE12622}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RelicAPI", "RelicAPI\RelicAPI.vcxproj", "{E43FEAB5-7362-466F-989C-0AF3666413C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -65,6 +67,16 @@ Global
 		{FAE99EB7-0481-49EE-8B9F-A620FEE12622}.Release|Win32.Build.0 = Release|Win32
 		{FAE99EB7-0481-49EE-8B9F-A620FEE12622}.Release|x64.ActiveCfg = Release|x64
 		{FAE99EB7-0481-49EE-8B9F-A620FEE12622}.Release|x64.Build.0 = Release|x64
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Debug|ARM.ActiveCfg = Debug|Win32
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Debug|Win32.Build.0 = Debug|Win32
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Debug|x64.ActiveCfg = Debug|x64
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Debug|x64.Build.0 = Debug|x64
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Release|ARM.ActiveCfg = Release|Win32
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Release|Win32.ActiveCfg = Release|Win32
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Release|Win32.Build.0 = Release|Win32
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Release|x64.ActiveCfg = Release|x64
+		{E43FEAB5-7362-466F-989C-0AF3666413C6}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
