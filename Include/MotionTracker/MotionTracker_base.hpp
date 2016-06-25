@@ -41,6 +41,7 @@ private:
 	//bool initialized = false;
 	//bool selectObject = false;
 	Ptr<Tracker> tracker = (Tracker*)0;
+	double resizeRate = 1.0;
 public:
 	~MotionTracker()
 	{
@@ -60,7 +61,7 @@ public:
 	MotionStatus motionStatus = Uninitialized;
 public:
 	/// Initial MotionTracker.
-	bool Initial(const char* algorithm)
+	bool Initial(const char* algorithm, double rRate = 1.0)
 	{
 		try
 		{
@@ -69,24 +70,31 @@ public:
 				delete tracker;
 				tracker = (Tracker*)0;
 			}
-			Ptr<Tracker> tracker = Tracker::create(algorithm);
+			tracker = Tracker::create(algorithm);
 			if (tracker == 0)
 			{
+#ifdef _DEBUG
 				BOOST_LOG_TRIVIAL(error) << "MotionTracker::Initia() failed";
+#endif
 				throw 0;
 				return false;
 			}
 			motionStatus = Initialized;
+			resizeRate = rRate;
 			return true;
 		}
 		catch (int e)
 		{
+#ifdef _DEBUG
 			BOOST_LOG_TRIVIAL(error) << "MotionTracker::Initia() failed";
+#endif
 			return false;
 		}
 		catch (...)
 		{
+#ifdef _DEBUG
 			BOOST_LOG_TRIVIAL(error) << "MotionTracker::Initia() failed";
+#endif
 			return false;
 		}
 	};
@@ -100,11 +108,20 @@ public:
 				//initializes the tracker 
 				if (!tracker->init(frameIn, rectIn))
 				{
+#ifdef _DEBUG
 					BOOST_LOG_TRIVIAL(warning) << "MotionTracker::PreTrack() failed";
+#endif
 					return false;
 				}
+#ifdef _DEBUG
 				BOOST_LOG_TRIVIAL(info) << "x=" << rectIn.x << ",y=" << rectIn.y 
 					<< ",width=" << rectIn.width << ",height=" << rectIn.height << ".";
+#endif
+				//Rect tmpBoundingBox;
+				//tmpBoundingBox.x = rectIn.x;
+				//tmpBoundingBox.y = rectIn.y;
+				//tmpBoundingBox.width = rectIn.width;
+				//tmpBoundingBox.height = rectIn.height;
 				rectangle(frameIn, rectIn, Scalar(255, 0, 0), 2, 1);
 				motionStatus = Prepared;
 				return true;
@@ -112,12 +129,16 @@ public:
 		}
 		catch (int e)
 		{
+#ifdef _DEBUG
 			BOOST_LOG_TRIVIAL(error) << "MotionTracker::Track() failed";
+#endif
 			return false;
 		}
 		catch (...)
 		{
+#ifdef _DEBUG
 			BOOST_LOG_TRIVIAL(error) << "MotionTracker::Track() failed";
+#endif
 			return false;
 		}
 	};
@@ -131,8 +152,15 @@ public:
 				//updates the tracker
 				if (tracker->update(frameIn, rectOut))
 				{
+#ifdef _DEBUG
 					BOOST_LOG_TRIVIAL(info) << "x=" << rectOut.x << ",y=" << rectOut.y
 						<< ",width=" << rectOut.width << ",height=" << rectOut.height << ".";
+#endif
+					//Rect tmpBoundingBox;
+					//tmpBoundingBox.x = rectOut.x;
+					//tmpBoundingBox.y = rectOut.y;
+					//tmpBoundingBox.width = rectOut.width;
+					//tmpBoundingBox.height = rectOut.height;
 					rectangle(frameIn, rectOut, Scalar(255, 0, 0), 2, 1);
 					return true;
 				}
@@ -140,12 +168,16 @@ public:
 		}
 		catch (int e)
 		{
+#ifdef _DEBUG
 			BOOST_LOG_TRIVIAL(error) << "MotionTracker::Track() failed";
+#endif
 			return false;
 		}
 		catch (...)
 		{
+#ifdef _DEBUG
 			BOOST_LOG_TRIVIAL(error) << "MotionTracker::Track() failed";
+#endif
 			return false;
 		}
 	};
