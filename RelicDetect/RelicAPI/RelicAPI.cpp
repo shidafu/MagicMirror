@@ -7,12 +7,12 @@ RelicAPI::RelicAPI()
 RelicAPI::~RelicAPI()
 {
 }
-string RelicAPI::detect(Mat img)
+string RelicAPI::detect(Mat img£¬vector<pair<RelicObj, ObjInfo>>& objs)
 {
 	RelicScn scene;
 	scene.Load_Img(img);
 	pair<RelicObj, ObjInfo> test;
-	vector<pair<RelicObj, ObjInfo>> objs(3);//get obj from mysql
+	//vector<pair<RelicObj, ObjInfo>> objs(3);//get obj from mysql
 	for (int i = 0;i < objs.size();i++)
 	{
 		std::vector<Point2f> corners;
