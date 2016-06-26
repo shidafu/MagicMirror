@@ -63,6 +63,13 @@ void on_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg) {
 	std::cout << "get a massage over!" << std::endl;
 	vector<uchar> buff;
 	string mmsg = msg->get_payload();
+	cout << "srclength: "<<mmsg.length()<<endl;
+
+	for (int i = 0; i < (30<mmsg.length()?30:mmsg.length());i++)
+	{
+		cout << mmsg[i];
+	}
+	cout << endl;
 	size_t Offt = mmsg.find("/9j/");
 	if (Offt<0)
 	{
@@ -71,11 +78,18 @@ void on_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg) {
 	}
 	const char* Pos0 = mmsg.c_str() + Offt;
 	string mmsg2 = Pos0;
+	for (int i = 0; i < (30 < mmsg2.length() ? 30 : mmsg2.length()); i++)
+	{
+		cout << mmsg2[i];
+	}
+	cout << endl;
 	//std::string mstr = websocketpp::base64_decode(mmsg2);
 	std::string mstr1;
 	try
 	{
-		RelicHelper::Base64Decode(mmsg2, &mstr1);
+		//RelicHelper::Base64Decode(mmsg2, &mstr1);
+		mstr1 = websocketpp::base64_decode(mmsg2);
+
 		std::cout << "Base64Decode over!" << std::endl;
 	}
 	catch (...)
@@ -84,10 +98,16 @@ void on_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg) {
 		return;
 	}
 	int len = mstr1.length();
-	if (len<10000)
+	if (len==0)
 	{
-		return;
+		int a = 1;
 	}
+	//if (len<1000)
+	//{
+	//	std::cout << "Too SHort !" << std::endl;
+	//	return;
+	//}
+	std::cout << "Length: " << len<< std::endl;
 	byte* imgbuffer = new byte[len];
 	for (int i = 0; i < len; i++)
 	{
@@ -119,7 +139,7 @@ void on_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg) {
 	//int imagesize = len / 3;
 	//Mat mMat(2, &imagesize, CV_8UC3, imgbuffer);
 	//CImage mimg(imgbuffer,len, CXIMAGE_FORMAT_JPG)
-	try
+/*	try
 	{
 		imshow("½ÓÊÕ", mMat);
 		waitKey();
@@ -128,7 +148,7 @@ void on_message(server* s, websocketpp::connection_hdl hdl, message_ptr msg) {
 	{
 		std::cout << "image error!" << std::endl;
 		return;
-	}
+	}*/
 
 	try {
 		s->send(hdl, Jstr/*msg->get_payload()*/, websocketpp::frame::opcode::text/*msg->get_opcode()*/);
