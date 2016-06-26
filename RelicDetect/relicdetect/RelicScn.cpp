@@ -49,8 +49,16 @@ bool RelicScn::Match_an_Obj(RelicObj obj)
 	BOOST_LOG_TRIVIAL(info) << "环境图像大小（像素）： " << whole_scene_area;
 	double ratio = possible_target_area / whole_scene_area;
 	BOOST_LOG_TRIVIAL(info) << "检测到的目标占全图比例： " << ratio;
-	if (ratio>0.01&&ratio<1)
+	if (ratio>0.05&&ratio<1)
 	{
+		for (int i;i < possible_obj_corners.size();i++)
+		{
+			if (possible_obj_corners[i].x<0||possible_obj_corners[i].y<0)
+			{
+				BOOST_LOG_TRIVIAL(info) << "未能检测到目标物体！";
+				return false;
+			}
+		}
 		BOOST_LOG_TRIVIAL(info) << "成功检测到目标物体！";
 		return true;
 	} 
@@ -107,8 +115,16 @@ bool RelicScn::Match_an_Obj(RelicObj obj, std::vector<Point2f> & corners)
 	BOOST_LOG_TRIVIAL(info) << "环境图像大小（像素）： " << whole_scene_area;
 	double ratio = possible_target_area / whole_scene_area;
 	BOOST_LOG_TRIVIAL(info) << "检测到的目标占全图比例： " << ratio;
-	if (ratio > 0.01&&ratio < 1)
+	if (ratio > 0.05&&ratio < 1)
 	{
+		for (int i;i < possible_obj_corners.size();i++)
+		{
+			if (possible_obj_corners[i].x < 0 || possible_obj_corners[i].y < 0)
+			{
+				BOOST_LOG_TRIVIAL(info) << "未能检测到目标物体！";
+				return false;
+			}
+		}
 		BOOST_LOG_TRIVIAL(info) << "成功检测到目标物体！";
 		corners = possible_obj_corners;
 		return true;
