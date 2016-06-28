@@ -226,14 +226,23 @@ context_ptr on_tls_init(tls_mode mode, websocketpp::connection_hdl hdl) {
     return ctx;
 }
 
-int main() {
+int main1() {
     // Create a server endpoint
-
 	CDatabaseManager mDb;
 	mDb.initial();
 	mDb.ConnectDb();
+	if (mDb.m_DbStatus==CDatabaseManager::DB_CONNECT)
+	{
+		cout << "database connect ok!" << endl;
+	}
+	else
+	{
+		cout << "database connect fail!" << endl;
+		return 0;
+	}
 	mDb.LoadFromDb(m_mObjVec);
 
+	cout << "loaded elements num: " << m_mObjVec.size() << endl;
     server echo_server;
 
     // Initialize ASIO
